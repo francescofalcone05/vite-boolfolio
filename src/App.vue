@@ -1,5 +1,6 @@
 <script>
-import HelloWord from "./components/HelloWorld.vue";
+import MainApp from "./components/MainApp.vue";
+import HelloWord from "./components/MainApp.vue";
 //import axios from 'axios';
 
 export default {
@@ -8,7 +9,7 @@ export default {
 
 
   components: {
-    HelloWord,
+    MainApp,
   },
 
   data() {
@@ -35,7 +36,7 @@ export default {
 
 <template>
 
-  <HelloWord />
+  <MainApp />
 
 </template>
 

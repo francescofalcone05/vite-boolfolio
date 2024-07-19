@@ -1,10 +1,12 @@
 <script>
 import axios from 'axios';
-import Paginate from './Paginate.vue'
+import Paginate from './Paginate.vue';
+import store from '../data/store.js';
+
 
 export default {
 
-  name: 'HellowWord',
+  name: 'MainApp',
 
 
   components: {
@@ -13,8 +15,7 @@ export default {
 
   data() {
     return {
-      projects: '',
-      localHostUrl: 'http://localhost:8000'
+      store,
 
     }
   },
@@ -24,8 +25,8 @@ export default {
     axios
       .get('http://localhost:8000/api/projects')
       .then(response => {
-        this.projects = response.data.progetti;
-        console.log(this.projects);
+        this.store.projects = response.data.progetti;
+        console.log(this.store.projects);
       })
   }
 
@@ -38,11 +39,11 @@ export default {
 
   <div class="container d-flex flex-wrap">
 
-    <template v-for="progetto in projects.data">
+    <template v-for="progetto in store.projects.data">
 
       <div class="card mb-3">
 
-        <img v-if="!progetto.img.startsWith('http')" :src="localHostUrl + '/storage/' + progetto.img"
+        <img v-if="!progetto.img.startsWith('http')" :src="store.localHostUrl + '/storage/' + progetto.img"
           class="card-img-top" alt="...">
 
         <img v-else="" :src="progetto.img" class="card-img-top" alt="...">

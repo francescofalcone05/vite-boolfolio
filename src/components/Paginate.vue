@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import store from '../data/store.js';
 
 export default {
 
@@ -11,10 +12,19 @@ export default {
 
     data() {
         return {
-            projects: '',
-            localHostUrl: 'http://localhost:8000',
-            urlEachPage: '/api/projects?page='
+            store,
 
+
+        }
+    },
+    methods: {
+        changePage(numero) {
+            axios
+                .get(this.store.urlEachPage + numero)
+                .then(response => {
+                    this.store.projects = response.data.progetti;
+                    console.log(this.store.projects);
+                })
         }
     },
 
@@ -23,8 +33,8 @@ export default {
         axios
             .get('http://localhost:8000/api/projects')
             .then(response => {
-                this.projects = response.data.progetti;
-                console.log(this.projects);
+                this.store.projects = response.data.progetti;
+                // console.log(this.projects);
             })
     }
 
@@ -32,8 +42,29 @@ export default {
 }
 </script>
 <template>
+    <div class="bg-light">
+        <nav aria-label="Page navigation">
+            <ul class="pagination    ">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <!-- modificare active e creare lo store per i dati-->
+                <li @click="changePage(n)" v-for="n in store.projects.last_page" class="page-item" aria-current="page">
+                    <a class="page-link" href="#">{{ n }}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-    <nav aria-label="Page navigation">
+    </div>
+
+    <!-- <nav aria-label="Page navigation">
         <ul class="pagination    ">
             <li class="page-item disabled">
                 <a class="page-link" href="#" aria-label="Previous">
@@ -55,7 +86,7 @@ export default {
                 </a>
             </li>
         </ul>
-    </nav>
+    </nav> -->
 
 </template>
 
