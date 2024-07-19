@@ -25,17 +25,23 @@ export default {
                     this.store.projects = response.data.progetti;
                     console.log(this.store.projects);
                 })
+        },
+
+        PrevOrNext(url) {
+            axios
+                .get(url)
+                .then(response => {
+                    this.store.projects = response.data.progetti;
+                    console.log(this.store.projects);
+                })
         }
+
+
     },
 
     mounted() {
 
-        axios
-            .get('http://localhost:8000/api/projects')
-            .then(response => {
-                this.store.projects = response.data.progetti;
-                // console.log(this.projects);
-            })
+
     }
 
 
@@ -45,17 +51,19 @@ export default {
     <div class="bg-light">
         <nav aria-label="Page navigation">
             <ul class="pagination    ">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Previous">
+                <li class="page-item" :class="{ disabled: !store.projects.prev_page_url }">
+                    <a @click="(store.projects.prev_page_url) ? PrevOrNext(store.projects.prev_page_url) : ''"
+                        class="page-link" href="#" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <!-- modificare active e creare lo store per i dati-->
+                <!-- modificare active -->
                 <li @click="changePage(n)" v-for="n in store.projects.last_page" class="page-item" aria-current="page">
                     <a class="page-link" href="#">{{ n }}</a>
                 </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
+                <li class="page-item" :class="{ disabled: !store.projects.next_page_url }">
+                    <a @click="(store.projects.next_page_url) ? PrevOrNext(store.projects.next_page_url) : ''"
+                        class="page-link" href="#" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>

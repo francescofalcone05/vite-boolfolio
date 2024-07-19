@@ -22,12 +22,12 @@ export default {
 
   mounted() {
 
-    axios
-      .get('http://localhost:8000/api/projects')
-      .then(response => {
-        this.store.projects = response.data.progetti;
-        console.log(this.store.projects);
-      })
+    // axios
+    //   .get('http://localhost:8000/api/projects')
+    //   .then(response => {
+    //     this.store.projects = response.data.progetti;
+    //     console.log(this.store.projects);
+    //   })
   }
 
 
