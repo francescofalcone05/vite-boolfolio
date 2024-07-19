@@ -30,17 +30,24 @@ export default {
 }
 </script>
 <template>
-    <div class="p-3 bg-light mb-4">
+    <div class=" bg-light mb-4">
 
-        <h1 class="text-success text-center">
-            Francesco's Boolfolio
-        </h1>
+
         <div class="d-flex justify-content-center">
-            <ul v-for="link in store.linksMenu">
-                <li>
-                    <router-link :to="{ name: link }" class="nav-link"> {{ link }} </router-link>
-                </li>
-            </ul>
+            <div>
+                <h1 class="text-success text-center"> Francesco's Boolfolio </h1>
+
+            </div>
+            <div class="d-flex align-self-center">
+                <ul v-for="link in store.linksMenu" class="m-0">
+                    <li>
+                        <router-link :to="{ name: link }" class="nav-link"> {{ link }} </router-link>
+                    </li>
+                </ul>
+            </div>
+
+
+
 
         </div>
     </div>
