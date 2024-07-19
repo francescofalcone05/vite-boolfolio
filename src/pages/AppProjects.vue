@@ -1,12 +1,12 @@
 <script>
 import axios from 'axios';
-import Paginate from './Paginate.vue';
+import Paginate from '../assets/elements/Paginate.vue';
 import store from '../data/store.js';
 
 
 export default {
 
-  name: 'MainApp',
+  name: 'AppProjects',
 
 
   components: {
@@ -22,12 +22,12 @@ export default {
 
   mounted() {
 
-    // axios
-    //   .get('http://localhost:8000/api/projects')
-    //   .then(response => {
-    //     this.store.projects = response.data.progetti;
-    //     console.log(this.store.projects);
-    //   })
+    axios
+      .get('http://localhost:8000/api/projects')
+      .then(response => {
+        this.store.projects = response.data.progetti;
+        console.log(this.store.projects);
+      })
   }
 
 
@@ -35,7 +35,7 @@ export default {
 </script>
 <template>
 
-  <h1 class="text-success text-center my-4">Francesco's Boolfolio</h1>
+
 
   <div class="container d-flex flex-wrap">
 

@@ -1,8 +1,7 @@
 <script>
-import MainApp from "./components/MainApp.vue";
-import HelloWord from "./components/MainApp.vue";
+import AppHeader from "./components/AppHeader.vue";
 import store from './data/store.js';
-import axios from 'axios';
+import { RouterView } from 'vue-router';
 
 //import axios from 'axios';
 
@@ -12,7 +11,9 @@ export default {
 
 
   components: {
-    MainApp,
+
+    AppHeader
+
   },
 
   data() {
@@ -24,12 +25,7 @@ export default {
 
   mounted() {
 
-    axios
-      .get('http://localhost:8000/api/projects')
-      .then(response => {
-        store.projects = response.data.progetti;
-        console.log(store.projects);
-      })
+
   }
 
 
@@ -39,7 +35,10 @@ export default {
 
 <template>
 
-  <MainApp />
+  <AppHeader />
+  <router-view></router-view>
+
+
 
 </template>
 

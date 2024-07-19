@@ -4,7 +4,14 @@ const iMieiDati = reactive({
     projects: '',
     localHostUrl: 'http://localhost:8000',
     urlEachPage: 'http://localhost:8000/api/projects?page=',
-    urlProjects: 'http://localhost:8000/api/projects'
+    urlProjects: 'http://localhost:8000/api/projects',
+    linksMenu: [
+        'Home',
+        'Projects',
+        'About',
+        'Contacts'
+
+    ]
 
 
 });
