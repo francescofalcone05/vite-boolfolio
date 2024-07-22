@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import store from '../../data/store.js';
+import store from '../data/store.js';
 
 export default {
 
@@ -48,7 +48,7 @@ export default {
 }
 </script>
 <template>
-    <div class="bg-light">
+    <div class="my_cont">
         <nav aria-label="Page navigation">
             <ul class="pagination    ">
                 <li class="page-item" :class="{ disabled: !store.projects.prev_page_url }">
@@ -71,31 +71,28 @@ export default {
         </nav>
 
     </div>
-
+    <!-- paginate usando i dati della chiamata api -->
     <!-- <nav aria-label="Page navigation">
-        <ul class="pagination    ">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav> -->
+            <ul class="pagination">
+                <li v-for="link in projects.links" class="page-item" :class=" {disabled: !link.url, active: link.active }">
+                    <a href="#" class="page-link" @click="changePage(link.url)" v-html="link.label"></a>
+                </li>
+            </ul>
+        </nav> -->
+
+    <!-- metodo da incollare per il paginate -->
+    <!-- changePage(url) {
+            axios.get(url).then((result) => {
+                this.projects = result.data.projects;
+            });
+        }, -->
+
 
 </template>
 
-<style></style>
+<style scoped>
+.my_cont {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
