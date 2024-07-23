@@ -18,9 +18,9 @@ export default {
         sendForm() {
             this.loading = true;
             const data = {
-                name: this.name,
-                email: this.email,
-                message: this.message
+                'name': this.name,
+                'email': this.email,
+                'message': this.message
             };
 
             // pulisco l'array con i messaggi
@@ -28,10 +28,11 @@ export default {
 
             // Importante - Stiamo comunicando con Laravel, quindi non è più obbligatorio inserire gli headers con il Content-Type
             // come abbiamo fatto invece quando comunicavamo direttamente con gli script PHP
-            axios.post(`${store.localHostUrl}/api/contacts`, data).then((response) => {
+            axios.post("http://127.0.0.1:8000/api/contacts", data).then((response) => {
                 this.success = response.data.success;
                 if (!this.success) {
                     this.errors = response.data.errors;
+                    console.log(this.errors);
                 } else {
                     // ripulisco i campi di input
                     this.name = '';
