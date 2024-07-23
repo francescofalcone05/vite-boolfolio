@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-
+import { RouterLink } from 'vue-router';
 import store from '../data/store.js';
 
 
@@ -27,8 +27,14 @@ export default {
     axios
       .get(`http://localhost:8000/api/projects/  ${this.$route.params.id}`)
       .then(response => {
-        store.singleProject = response.data.progetto;
-        console.log('questo è ', store.singleProject);
+        if (response.data.status) {
+          store.singleProject = response.data.progetto;
+          console.log('questo è ', store.singleProject);
+        } else {
+          this.$router.push({ name: 'not-found' })
+        }
+
+
       })
   }
 
